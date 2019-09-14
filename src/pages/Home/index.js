@@ -1,99 +1,62 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
 import { MdAddShoppingCart } from 'react-icons/md';
 import { ProductList } from './styles';
 
-export default function Home() {
-  return (
-    <ProductList>
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
+import api from '../../services/api';
+import { formatPrice } from '../../util/format';
 
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
+class Home extends Component {
+  state = {
+    products: [],
+  };
 
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
+  async componentDidMount() {
+    const response = await api.get('products');
 
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
+    const data = response.data.map(product => ({
+      ...product,
+      priceFormated: formatPrice(product.price),
+    }));
 
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
+    this.setState({
+      products: data,
+    });
+  }
 
-      <li>
-        <img
-          src="https://static.netshoes.com.br/produtos/tenis-asics-gel-quantum-90-masculino/36/D18-3058-036/D18-3058-036_detalhe1.jpg?resize=280:280"
-          alt=""
-        ></img>
-        <strong>Tênis muito legal</strong>
-        <span>129,90</span>
-        <button type="button">
-          <div>
-            <MdAddShoppingCart size={16} color="#fff" /> 1
-          </div>
-          <span>Adicionar ao Carrinho</span>
-        </button>
-      </li>
-    </ProductList>
-  );
+  handleAddProduct = product => {
+    const { dispatch } = this.props;
+
+    dispatch({
+      type: 'ADD_TO_CART',
+      product,
+    });
+  };
+
+  render() {
+    const { products } = this.state;
+    return (
+      <ProductList>
+        {products.map(product => (
+          <li key={product.id}>
+            <img src={product.image} alt={product.title}></img>
+            <strong>{product.title}</strong>
+            <span>{product.priceFormated}</span>
+            <button
+              type="button"
+              onClick={() => this.handleAddProduct(product)}
+            >
+              <div>
+                <MdAddShoppingCart size={16} color="#fff" /> 1
+              </div>
+              <span>Adicionar ao Carrinho</span>
+            </button>
+          </li>
+        ))}
+      </ProductList>
+    );
+  }
 }
+
+export default connect()(Home);

@@ -28,6 +28,7 @@ export const ProductList = styled.ul`
       font-size: 21px;
       line-height: 20px;
       margin: 5px 0 20px;
+      font-weight: bold;
     }
 
     button {
