@@ -4,7 +4,10 @@ import { Container, Cart } from './styles';
 import { MdShoppingBasket } from 'react-icons/md';
 import logo from '../../assets/images/logo.svg';
 
-export default function Header() {
+//redux
+import { connect } from 'react-redux';
+
+function Header({ cartSize }) {
   return (
     <Container>
       <Link to="/">
@@ -14,10 +17,20 @@ export default function Header() {
       <Cart to="/cart">
         <div>
           <strong>Meu Carrinho</strong>
-          <small>3 itens</small>
+          <small>
+            {cartSize
+              ? cartSize === 1
+                ? cartSize + ' item'
+                : cartSize + ' itens'
+              : 'Vazio'}
+          </small>
         </div>
         <MdShoppingBasket size={36} color="#fff" />
       </Cart>
     </Container>
   );
 }
+
+export default connect(state => ({
+  cartSize: state.cart.length,
+}))(Header);
