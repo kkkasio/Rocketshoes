@@ -12,6 +12,7 @@ export default createGlobalStyle`
 
   body{
     background:#191920 url(${background}) no-repeat center top;
+    background-size:cover;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: antialiased;
   }
