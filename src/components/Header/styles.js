@@ -24,6 +24,11 @@ export const Cart = styled(Link)`
       color: #fff;
     }
 
+    small {
+      color: #797979;
+      font-size: 13px;
+    }
+
     span {
       font-size: 12px;
       color: #999;
