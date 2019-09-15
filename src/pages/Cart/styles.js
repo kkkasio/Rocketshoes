@@ -68,12 +68,20 @@ export const ProductTable = styled.table`
       color: #666;
       padding: 6px;
       width: 50px;
+      margin: 0 5px;
     }
   }
   button {
     background: none;
     border: 0;
     padding: 6px;
+  }
+
+  svg {
+    transition: all 0.2s;
+  }
+  svg:hover {
+    transform: scale(1.5);
   }
 `;
 export const Total = styled.div`
