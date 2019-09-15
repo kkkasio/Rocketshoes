@@ -92,3 +92,44 @@ export const Total = styled.div`
     margin-left: 5px;
   }
 `;
+
+export const EmptyCart = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  svg {
+    margin-bottom: 25px;
+  }
+
+  div {
+    text-align: center;
+
+    h2 {
+      color: #7159c1;
+      line-height: 21px;
+      margin-bottom: 15px;
+    }
+
+    p {
+      margin-bottom: 25px;
+      font-weight: 500;
+      color: #666;
+    }
+  }
+
+  a {
+    background: #7159c1;
+    padding: 12px 20px;
+    border-radius: 4px;
+    border: 0;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    &:hover {
+      background: ${darken(0.25, '#7159c1')};
+    }
+  }
+`;
