@@ -36,6 +36,7 @@ export const ProductTable = styled.table`
     text-align: left;
     padding: 12px;
   }
+
   tbody td {
     padding: 12px;
     border-bottom: solid 1px #eee;
@@ -47,37 +48,34 @@ export const ProductTable = styled.table`
 
   strong {
     color: #333;
-    display:block
+    display: block;
   }
 
   span {
-    display:block
+    display: block;
     margin-top: 5px;
-    font-size:18px;
-    font-weight:bold;
+    font-size: 18px;
+    font-weight: bold;
   }
 
-  div{
-    display:flex;
-    align-items:center;
+  div {
+    display: flex;
+    align-items: center;
 
-    input{
-      border:1px solid #ddd;
-      border-radius:4px;
-      color:#666;
-      padding:6px;
-      width:50px;
-      
+    input {
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      color: #666;
+      padding: 6px;
+      width: 50px;
     }
   }
-
   button {
-    background:none;
-    border:0;
-    padding:6px;
+    background: none;
+    border: 0;
+    padding: 6px;
   }
 `;
-
 export const Total = styled.div`
   display: flex;
   align-items: baseline;
