@@ -1,9 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { formatPrice } from '../../util/format';
-import * as CartActions from '../../store/modules/cart/actions';
-
 import { Link } from 'react-router-dom';
 import {
   MdAddCircleOutline,
@@ -11,6 +8,9 @@ import {
   MdDelete,
   MdShoppingCart,
 } from 'react-icons/md';
+import { formatPrice } from '../../util/format';
+import * as CartActions from '../../store/modules/cart/actions';
+
 import { Container, ProductTable, Total, EmptyCart } from './styles';
 
 function Cart({ cart, total, removeFromCart, updateAmount }) {
@@ -39,7 +39,7 @@ function Cart({ cart, total, removeFromCart, updateAmount }) {
 
             <tbody>
               {cart.map(product => (
-                <tr>
+                <tr key={product.title}>
                   <td>
                     <img src={product.image} alt={product.title} />
                   </td>
