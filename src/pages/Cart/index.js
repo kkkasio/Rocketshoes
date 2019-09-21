@@ -50,7 +50,7 @@ function Cart({ cart, total, removeFromCart, updateAmount }) {
 
                   <td>
                     <div>
-                      <button disabled="button">
+                      <button type="button" disabled="button">
                         <MdRemoveCircleOutline
                           size={20}
                           color="#7159c1"
