@@ -20,10 +20,8 @@ module.exports = {
   plugins: ['react', 'prettier'],
   rules: {
     'prettier/prettier': 'error',
-    'jsx-a11y/control-has-associated-label': 0,
-
     'no-param-reassign': [2, { props: false }],
-    'no-param-reassing': 0,
+    
     'react/jsx-filename-extension': [
       1,
       {
