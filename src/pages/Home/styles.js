@@ -1,5 +1,42 @@
-import styled from 'styled-components';
+import styled, { css, keyframes } from 'styled-components';
 import { darken } from 'polished';
+
+const rotate = keyframes`
+  from{
+    transform: rotate(0deg);
+  }
+  to{
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingList = styled.div`
+  background: #fff;
+  max-width: 250px;
+  height: 100px;
+  margin: 80px auto 0;
+  padding: 10px;
+  border-radius: 4px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #999;
+
+    small {
+      margin-top: 10px;
+    }
+    ${props =>
+      props.loading &&
+      css`
+        svg {
+          animation: ${rotate} 2.5s linear infinite;
+        }
+      `}
+  }
+`;
+
 export const ProductList = styled.ul`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
