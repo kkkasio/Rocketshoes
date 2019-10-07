@@ -1,15 +1,15 @@
 import React from 'react';
-import {SafeAreaView, Text, StatusBar} from 'react-native';
+import {StatusBar} from 'react-native';
+
+import Routes from './routes';
 
 import './config/ReactotronConfig';
 
 export default function App() {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Text>Hello Wolrd</Text>
-      </SafeAreaView>
+      <StatusBar barStyle="light-content" />
+      <Routes />
     </>
   );
 }
