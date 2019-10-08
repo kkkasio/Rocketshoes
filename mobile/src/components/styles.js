@@ -4,17 +4,20 @@ import colors from '../styles/colors';
 import logo from '../assets/logo.png';
 
 export const Wrapper = styled.SafeAreaView`
+  display: flex;
   flex: 0;
   background: ${colors.dark};
   flex-direction: row;
 `;
 
 export const Container = styled.View`
-  flex-direction: row;
   flex: 1;
+  flex-direction: row;
   justify-content: space-between;
   padding: 20px;
 `;
+
+export const LogoButton = styled.TouchableOpacity``;
 
 export const Logo = styled.Image.attrs({
   source: logo,
