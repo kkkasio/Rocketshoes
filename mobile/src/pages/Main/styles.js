@@ -1,6 +1,14 @@
 import styled from 'styled-components/native';
-import {darken} from 'polished';
+import { darken } from 'polished';
+import Shimmer from 'react-native-shimmer-placeholder';
 import colors from '../../styles/colors';
+
+export const ShimmerImage = styled(Shimmer)`
+  height: 197px;
+  width: 197px;
+  align-self: center;
+  border-radius: 100px;
+`;
 
 export const Container = styled.View`
   background: ${colors.header};

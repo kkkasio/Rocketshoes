@@ -1,16 +1,22 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+
+import './config/ReactotronConfig';
+
+import { StatusBar } from 'react-native';
+
+import { Provider } from 'react-redux';
+import store from './store/index';
 
 import Routes from './routes';
 import color from './styles/colors';
 
-import './config/ReactotronConfig';
-
 export default function App() {
   return (
     <>
-      <StatusBar backgroundColor={color.dark} barStyle="light-content" />
-      <Routes />
+      <Provider store={store}>
+        <StatusBar backgroundColor={color.dark} barStyle="light-content" />
+        <Routes />
+      </Provider>
     </>
   );
 }

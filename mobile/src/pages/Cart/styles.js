@@ -1,5 +1,5 @@
 import styled from 'styled-components/native';
-import {darken} from 'polished';
+import { darken } from 'polished';
 import colors from '../../styles/colors';
 
 export const Container = styled.View`
@@ -103,4 +103,14 @@ export const OrderText = styled.Text`
   font-weight: bold;
   color: #fff;
   text-transform: uppercase;
+`;
+
+export const EmptyCart = styled.View`
+  align-items: center;
+`;
+
+export const EmptyCartText = styled.Text`
+  font-size: 24;
+  margin-top: 14px;
+  font-weight: bold;
 `;
