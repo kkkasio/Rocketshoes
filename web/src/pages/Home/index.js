@@ -1,5 +1,4 @@
-/* eslint-disable react/state-in-constructor */
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -12,17 +11,12 @@ import api from '../../services/api';
 
 import * as CartActions from '../../store/modules/cart/actions';
 
-class Home extends Component {
-  state = {
-    products: [],
-    loading: false,
-  };
+function Home({ amount, addToCartRequest }) {
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  async componentDidMount() {
-    try {
-      this.setState({
-        loading: true,
-      });
+  useEffect(() => {
+    async function loadProducts() {
       const response = await api.get('products');
 
       const data = response.data.map(product => ({
@@ -30,60 +24,47 @@ class Home extends Component {
         priceFormatted: formatPrice(product.price),
       }));
 
-      this.setState({
-        products: data,
-      });
-    } catch (error) {
-      console.log(error);
-    } finally {
-      this.setState({
-        loading: false,
-      });
+      setProducts(data);
     }
-  }
+    loadProducts();
+  }, []);
 
-  handleAddProduct = id => {
-    const { addToCartRequest } = this.props;
+  function handleAddProduct(id) {
     addToCartRequest(id);
-  };
-
-  render() {
-    const { products, loading } = this.state;
-    const { amount } = this.props;
-    console.log(loading);
-    return (
-      <>
-        {loading ? (
-          <LoadingList loading={loading ? 1 : 0}>
-            <div>
-              <FaSpinner color="#7159c1" size={60} />
-              <small>carregando</small>
-            </div>
-          </LoadingList>
-        ) : (
-          <ProductList>
-            {products.map(product => (
-              <li key={product.id}>
-                <img src={product.image} alt={product.title} />
-                <strong>{product.title}</strong>
-                <span>{product.priceFormatted}</span>
-                <button
-                  type="button"
-                  onClick={() => this.handleAddProduct(product.id)}
-                >
-                  <div>
-                    <MdAddShoppingCart size={16} color="#fff" />
-                    {amount[product.id] || 0}
-                  </div>
-                  <span>Adicionar ao Carrinho</span>
-                </button>
-              </li>
-            ))}
-          </ProductList>
-        )}
-      </>
-    );
   }
+
+  return (
+    <>
+      {loading ? (
+        <LoadingList loading={loading ? 1 : 0}>
+          <div>
+            <FaSpinner color="#7159c1" size={60} />
+            <small>carregando</small>
+          </div>
+        </LoadingList>
+      ) : (
+        <ProductList>
+          {products.map(product => (
+            <li key={product.id}>
+              <img src={product.image} alt={product.title} />
+              <strong>{product.title}</strong>
+              <span>{product.priceFormatted}</span>
+              <button
+                type="button"
+                onClick={() => handleAddProduct(product.id)}
+              >
+                <div>
+                  <MdAddShoppingCart size={16} color="#fff" />
+                  {amount[product.id] || 0}
+                </div>
+                <span>Adicionar ao Carrinho</span>
+              </button>
+            </li>
+          ))}
+        </ProductList>
+      )}
+    </>
+  );
 }
 const mapStateToProps = state => ({
   amount: state.cart.reduce((amount, product) => {

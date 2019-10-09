@@ -32,8 +32,6 @@ import {
 } from './styles';
 
 function Cart({ cart, total, removeFromCart, updateAmountRequest }) {
-  console.tron.log(total);
-
   function increment(product) {
     updateAmountRequest(product.id, product.amount + 1);
   }
