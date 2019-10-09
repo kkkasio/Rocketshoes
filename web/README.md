@@ -28,3 +28,5 @@ function increment(product) {
   dispatch(CartActions.updateAmountRequest(product.id, product.amount + 1));
 }
 ```
+
+[See more here](https://github.com/kkkasio/Rocketshoes/blob/main/web/src/pages/Home/index.js)
