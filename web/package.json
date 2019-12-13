@@ -22,10 +22,12 @@
     "styled-components": "^4.3.2"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start ",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "json": "json-server server.json --port 3333",
+    "dev": "concurrently \"yarn start\" \"yarn json\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -44,6 +46,7 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.2",
+    "concurrently": "^5.0.1",
     "eslint": "^6.3.0",
     "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.3.0",
