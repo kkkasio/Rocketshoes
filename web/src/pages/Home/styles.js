@@ -42,6 +42,7 @@ export const ProductList = styled.ul`
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 20px;
   list-style: none;
+  margin: 0 15px;
 
   li {
     display: flex;
@@ -99,5 +100,24 @@ export const ProductList = styled.ul`
         font-weight: bold;
       }
     }
+  }
+
+  @media (max-width: 990px) {
+    li {
+      max-width: 290px;
+      img {
+      }
+    }
+  }
+
+  @media (max-width: 940px) {
+    grid-template-columns: repeat(2, 1fr);
+    li {
+      max-width: 100%;
+    }
+  }
+
+  @media (max-width: 610px) {
+    grid-template-columns: 1fr;
   }
 `;

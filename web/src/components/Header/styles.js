@@ -5,8 +5,17 @@ export const Container = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 0 15px;
   margin: 50px 0;
+  transition: all 4s;
+
+  @media (max-width: 600px) {
+    img {
+      width: 230px;
+    }
+  }
 `;
+
 export const Cart = styled(Link)`
   display: flex;
   align-items: center;
